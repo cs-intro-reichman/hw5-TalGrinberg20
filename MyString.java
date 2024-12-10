@@ -12,6 +12,7 @@ public class MyString {
         System.out.println(randomStringOfLetters(3));
         System.out.println(insertRandomly('s',"cat"));
         System.out.println(remove("meet","committee"));
+        System.out.println(remove("abc", "abc"));
         // System.out.println(spacedString(hello));
         //// Put your other tests here.
     }
@@ -85,7 +86,7 @@ public class MyString {
     public static String spacedString(String str) {
         String spacedString = "";
         if (str.equals("")) 
-            return " ";
+            return "";
         else 
             if (str.length() == 1)
                 return " "+str;
@@ -129,6 +130,9 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
+        if (str1.length() == str2.length()) {
+            return " ";
+        }
         String processed = str2;
         char currentCharStr1;
         int indexToRemove;
