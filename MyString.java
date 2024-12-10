@@ -11,6 +11,7 @@ public class MyString {
         System.out.println(spacedString(""));
         System.out.println(randomStringOfLetters(3));
         System.out.println(insertRandomly('s',"cat"));
+        System.out.println(remove("meet","committee"));
         // System.out.println(spacedString(hello));
         //// Put your other tests here.
     }
@@ -128,8 +129,19 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
-        return null;
+        String processed = str2;
+        char currentCharStr1;
+        int indexToRemove;
+        for (int i = 0; i < str1.length(); i++) {
+            currentCharStr1 = str1.charAt(i);
+            indexToRemove = processed.indexOf(currentCharStr1);
+            if (processed.indexOf(currentCharStr1) == 0) {
+                  processed =  processed.substring(currentCharStr1+1);
+                } else {
+            processed = processed.substring(0, indexToRemove) + processed.substring(indexToRemove+1);               
+        }
+        }
+        return processed;
     }
 
     /**
