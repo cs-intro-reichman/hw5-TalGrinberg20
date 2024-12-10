@@ -8,7 +8,7 @@ public class MyString {
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
         System.out.println(subsetOf("sap","space"));
-        System.out.println(spacedString("silent"));
+        System.out.println(spacedString("a"));
         System.out.println(randomStringOfLetters(3));
         System.out.println(insertRandomly('s',"cat"));
         // System.out.println(spacedString(hello));
@@ -82,7 +82,7 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        String spacedString = "";
+        String spacedString = " ";
         for (int i = 0; i < str.length(); i++) {
             spacedString = spacedString + str.charAt(i);
             spacedString = spacedString + " ";
