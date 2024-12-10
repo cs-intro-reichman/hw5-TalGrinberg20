@@ -3,6 +3,7 @@
  */
 public class Scrabble {
 
+
 	// Note 1: "Class variables", like the five class-level variables declared below,
 	// are global variables that can be accessed by any function in the class. It is
 	// customary to name class variables using capital letters and underline characters.
@@ -48,7 +49,11 @@ public class Scrabble {
 
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
-		//// Replace the following statement with your code
+		init();
+		for (int i = 0; i < DICTIONARY.length; i++) {
+			if (word.equals(DICTIONARY[i])) 
+				return true;
+		}
 		return false;
 	}
 	
@@ -117,6 +122,8 @@ public class Scrabble {
 	}
 
 	public static void main(String[] args) {
+		System.out.println(isWordInDictionary("ABAS"));
+
 		//// Uncomment the test you want to run
 		////testBuildingTheDictionary();  
 		////testScrabbleScore();    
