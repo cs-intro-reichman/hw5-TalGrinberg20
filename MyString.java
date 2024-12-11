@@ -12,7 +12,7 @@ public class MyString {
         // System.out.println(randomStringOfLetters(3));
         // System.out.println(insertRandomly('s',"cat"));
         // System.out.println(remove("meet","committee"));
-        System.out.println(remove("abc", "b"));
+        System.out.println(remove("hello", ""));
         // System.out.println(spacedString(hello));
         //// Put your other tests here.
     }
@@ -131,7 +131,7 @@ public class MyString {
      */
     public static String remove(String str1, String str2) {
         if (str1.length() == str2.length()) {
-            return " ";
+            return "";
         }
         String processed = str1;
         char currentCharStr2;
