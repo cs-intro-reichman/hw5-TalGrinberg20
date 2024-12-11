@@ -4,15 +4,15 @@
 public class MyString {
     public static void main(String args[]) {
         String hello = "hello";
-        System.out.println(countChar(hello, 'h'));
-        System.out.println(countChar(hello, 'l'));
-        System.out.println(countChar(hello, 'z'));
-        System.out.println(subsetOf("sap","space"));
-        System.out.println(spacedString(""));
-        System.out.println(randomStringOfLetters(3));
-        System.out.println(insertRandomly('s',"cat"));
-        System.out.println(remove("meet","committee"));
-        System.out.println(remove("abc", "abc"));
+        // System.out.println(countChar(hello, 'h'));
+        // System.out.println(countChar(hello, 'l'));
+        // System.out.println(countChar(hello, 'z'));
+        // System.out.println(subsetOf("sap","space"));
+        // System.out.println(spacedString(""));
+        // System.out.println(randomStringOfLetters(3));
+        // System.out.println(insertRandomly('s',"cat"));
+        // System.out.println(remove("meet","committee"));
+        System.out.println(remove("abc", "b"));
         // System.out.println(spacedString(hello));
         //// Put your other tests here.
     }
@@ -133,14 +133,14 @@ public class MyString {
         if (str1.length() == str2.length()) {
             return " ";
         }
-        String processed = str2;
-        char currentCharStr1;
+        String processed = str1;
+        char currentCharStr2;
         int indexToRemove;
-        for (int i = 0; i < str1.length(); i++) {
-            currentCharStr1 = str1.charAt(i);
-            indexToRemove = processed.indexOf(currentCharStr1);
-            if (processed.indexOf(currentCharStr1) == 0) {
-                  processed =  processed.substring(currentCharStr1+1);
+        for (int i = 0; i < str2.length(); i++) {
+            currentCharStr2 = str2.charAt(i);
+            indexToRemove = processed.indexOf(currentCharStr2);
+            if (processed.indexOf(currentCharStr2) == 0) {
+                  processed =  processed.substring(currentCharStr2+1);
                 } else {
             processed = processed.substring(0, indexToRemove) + processed.substring(indexToRemove+1);               
         }
