@@ -8,7 +8,11 @@ public class MyString {
         // System.out.println(countChar(hello, 'l'));
         // System.out.println(countChar(hello, 'z'));
         // System.out.println(subsetOf("sap","space"));
-        // System.out.println(spacedString(""));
+        System.out.println(spacedString(""));
+        System.out.println("silent -> \"" + MyString.spacedString("silent") + "\" (expected: s i l e n t)");
+        System.out.println("a -> \"" + MyString.spacedString("a") + "\" (expected: a)");
+        System.out.println("empty string -> \"" + MyString.spacedString("") + "\" (expected: )");
+        System.out.println("hi -> \"" + MyString.spacedString("hi") + "\" (expected: h i)");
         // System.out.println(randomStringOfLetters(3));
         // System.out.println(insertRandomly('s',"cat"));
         // System.out.println(remove("meet","committee"));
@@ -87,16 +91,18 @@ public class MyString {
         String spacedString = "";
         if (str.equals("")) 
             return "";
-        else 
-            if (str.length() == 1)
-                return " "+str;
-            else {
+        
+        if (str.length() == 1)
+            return str;
+        
         for (int i = 0; i < str.length(); i++) {
             spacedString = spacedString + str.charAt(i);
-            spacedString = spacedString + " ";
+            if (i < str.length() - 1) { // Add a space only if it's not the last character
+                spacedString += " ";
+        }
             
         }
-        }
+        
         return spacedString;
     }
   
