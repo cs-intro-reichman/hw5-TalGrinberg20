@@ -35,6 +35,7 @@ public class Scrabble {
 	public static void init() {
 		// Declares the variable in to refer to an object of type In, and initializes it to represent
 		// the stream of characters coming from the given file. Used for reading words from the file.  
+		
 		In in = new In(WORDS_FILE);
         System.out.println("Loading word list from file...");
         NUM_OF_WORDS = 0;
@@ -51,7 +52,7 @@ public class Scrabble {
 	public static boolean isWordInDictionary(String word) {
 		init();
 		for (int i = 0; i < DICTIONARY.length; i++) {
-			if (word.equals(DICTIONARY[i])) 
+			if (word.toLowerCase().equals(DICTIONARY[i])) 
 				return true;
 		}
 		return false;
@@ -61,8 +62,18 @@ public class Scrabble {
 	// If the length of the word equals the length of the hand, adds 50 points to the score.
 	// If the word includes the sequence "runi", adds 1000 points to the game.
 	public static int wordScore(String word) {
-		//// Replace the following statement with your code
-		return 0;
+		word.toLowerCase();
+		int score = 0;
+		if (word.contains("runi"))
+			score += 1000;
+		if (word.length() == HAND_SIZE)
+			score += 50;
+		int letterPosition = 0;
+		for (int i = 0; i < word.length(); i++) {
+			letterPosition = ((int) word.charAt(i)) - 97;
+			score += SCRABBLE_LETTER_VALUES[letterPosition];
+		}
+		return score;
 	}
 
 	// Creates a random hand of length (HAND_SIZE - 2) and then inserts
@@ -122,11 +133,10 @@ public class Scrabble {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(isWordInDictionary("ABAS"));
 
 		//// Uncomment the test you want to run
 		////testBuildingTheDictionary();  
-		////testScrabbleScore();    
+		testScrabbleScore();    
 		////testCreateHands();  
 		////testPlayHands();
 		////playGame();
@@ -138,7 +148,7 @@ public class Scrabble {
 		for (int i = 0; i < 5; i++) {
 			System.out.println(DICTIONARY[i]);
 		}
-		System.out.println(isWordInDictionary("mango"));
+		System.out.println(isWordInDictionary("ABASED"));
 	}
 	
 	public static void testScrabbleScore() {
