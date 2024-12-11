@@ -64,15 +64,16 @@ public class Scrabble {
 	public static int wordScore(String word) {
 		word.toLowerCase();
 		int score = 0;
-		if (word.contains("runi"))
-			score += 1000;
-		if (word.length() == HAND_SIZE)
-			score += 50;
 		int letterPosition = 0;
 		for (int i = 0; i < word.length(); i++) {
 			letterPosition = ((int) word.charAt(i)) - 97;
 			score += SCRABBLE_LETTER_VALUES[letterPosition];
 		}
+		score = score*word.length();
+		if (MyString.subsetOf("runi", word))
+			score += 1000;
+		if (word.length() == HAND_SIZE)
+			score += 50;
 		return score;
 	}
 
@@ -152,8 +153,8 @@ public class Scrabble {
 	}
 	
 	public static void testScrabbleScore() {
-		System.out.println(wordScore("bee"));	
-		System.out.println(wordScore("babe"));
+		System.out.println(wordScore("quiz"));	
+		System.out.println(wordScore("cat"));
 		System.out.println(wordScore("friendship"));
 		System.out.println(wordScore("running"));
 	}
