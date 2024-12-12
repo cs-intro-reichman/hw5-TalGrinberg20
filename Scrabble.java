@@ -30,12 +30,16 @@ public class Scrabble {
 	// Actual number of words in the dictionary (set by the init function, below)
 	static int NUM_OF_WORDS;
 
+	//states wether the dictionary has been initialized
+	private static boolean isInitialized = false;
+
+
 	// Populates the DICTIONARY array with the lowercase version of all the words read
 	// from the WORDS_FILE, and sets NUM_OF_WORDS to the number of words read from the file.
 	public static void init() {
 		// Declares the variable in to refer to an object of type In, and initializes it to represent
 		// the stream of characters coming from the given file. Used for reading words from the file.  
-		
+		if (!isInitialized) {
 		In in = new In(WORDS_FILE);
         System.out.println("Loading word list from file...");
         NUM_OF_WORDS = 0;
@@ -46,6 +50,8 @@ public class Scrabble {
 			DICTIONARY[NUM_OF_WORDS++] = in.readString().toLowerCase();
 		}
         System.out.println(NUM_OF_WORDS + " words loaded.");
+		isInitialized = true;
+		}
 	}
 
 	// Checks if the given word is in the dictionary.
@@ -136,8 +142,8 @@ public class Scrabble {
 	public static void main(String[] args) {
 
 		//// Uncomment the test you want to run
-		////testBuildingTheDictionary();  
-		testScrabbleScore();    
+		testBuildingTheDictionary();  
+		// testScrabbleScore();    
 		////testCreateHands();  
 		////testPlayHands();
 		////playGame();
