@@ -3,6 +3,7 @@
  */
 public class Scrabble {
 
+
 	// Note 1: "Class variables", like the five class-level variables declared below,
 	// are global variables that can be accessed by any function in the class. It is
 	// customary to name class variables using capital letters and underline characters.
@@ -29,11 +30,16 @@ public class Scrabble {
 	// Actual number of words in the dictionary (set by the init function, below)
 	static int NUM_OF_WORDS;
 
+	//states wether the dictionary has been initialized
+	private static boolean isInitialized = false;
+
+
 	// Populates the DICTIONARY array with the lowercase version of all the words read
 	// from the WORDS_FILE, and sets NUM_OF_WORDS to the number of words read from the file.
 	public static void init() {
 		// Declares the variable in to refer to an object of type In, and initializes it to represent
 		// the stream of characters coming from the given file. Used for reading words from the file.  
+		if (!isInitialized) {
 		In in = new In(WORDS_FILE);
         System.out.println("Loading word list from file...");
         NUM_OF_WORDS = 0;
@@ -44,11 +50,17 @@ public class Scrabble {
 			DICTIONARY[NUM_OF_WORDS++] = in.readString().toLowerCase();
 		}
         System.out.println(NUM_OF_WORDS + " words loaded.");
+		isInitialized = true;
+		}
 	}
 
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
-		//// Replace the following statement with your code
+		init();
+		for (int i = 0; i < DICTIONARY.length; i++) {
+			if (word.equals(DICTIONARY[i])) 
+				return true;
+		}
 		return false;
 	}
 	
@@ -56,16 +68,29 @@ public class Scrabble {
 	// If the length of the word equals the length of the hand, adds 50 points to the score.
 	// If the word includes the sequence "runi", adds 1000 points to the game.
 	public static int wordScore(String word) {
-		//// Replace the following statement with your code
-		return 0;
+		word.toLowerCase();
+		int score = 0;
+		int letterPosition = 0;
+		for (int i = 0; i < word.length(); i++) {
+			letterPosition = ((int) word.charAt(i)) - 97;
+			score += SCRABBLE_LETTER_VALUES[letterPosition];
+		}
+		score = score*word.length();
+		if (MyString.subsetOf("runi", word))
+			score += 1000;
+		if (word.length() == HAND_SIZE)
+			score += 50;
+		return score;
 	}
 
 	// Creates a random hand of length (HAND_SIZE - 2) and then inserts
 	// into it, at random indexes, the letters 'a' and 'e'
 	// (these two vowels make it easier for the user to construct words)
 	public static String createHand() {
-		//// Replace the following statement with your code
-		return null;
+		String randomHand = MyString.randomStringOfLetters(HAND_SIZE - 2);
+		randomHand = MyString.insertRandomly('a', randomHand);
+		randomHand = MyString.insertRandomly('e', randomHand);
+		return randomHand;
 	}
 	
     // Runs a single hand in a Scrabble game. Each time the user enters a valid word:
@@ -117,10 +142,11 @@ public class Scrabble {
 	}
 
 	public static void main(String[] args) {
+
 		//// Uncomment the test you want to run
-		////testBuildingTheDictionary();  
-		////testScrabbleScore();    
-		////testCreateHands();  
+		testBuildingTheDictionary();  
+		// testScrabbleScore();    
+		// testCreateHands();  
 		////testPlayHands();
 		////playGame();
 	}
@@ -131,12 +157,12 @@ public class Scrabble {
 		for (int i = 0; i < 5; i++) {
 			System.out.println(DICTIONARY[i]);
 		}
-		System.out.println(isWordInDictionary("mango"));
+		System.out.println(isWordInDictionary("CAT"));
 	}
 	
 	public static void testScrabbleScore() {
-		System.out.println(wordScore("bee"));	
-		System.out.println(wordScore("babe"));
+		System.out.println(wordScore("quiz"));	
+		System.out.println(wordScore("cat"));
 		System.out.println(wordScore("friendship"));
 		System.out.println(wordScore("running"));
 	}
@@ -148,8 +174,8 @@ public class Scrabble {
 	}
 	public static void testPlayHands() {
 		init();
-		//playHand("ocostrza");
-		//playHand("arbffip");
-		//playHand("aretiin");
+		playHand("ocostrza");
+		playHand("arbffip");
+		playHand("aretiin");
 	}
 }
