@@ -58,7 +58,7 @@ public class Scrabble {
 	public static boolean isWordInDictionary(String word) {
 		init();
 		for (int i = 0; i < DICTIONARY.length; i++) {
-			if (word.toLowerCase().equals(DICTIONARY[i])) 
+			if (word.equals(DICTIONARY[i])) 
 				return true;
 		}
 		return false;
@@ -144,9 +144,9 @@ public class Scrabble {
 	public static void main(String[] args) {
 
 		//// Uncomment the test you want to run
-		// testBuildingTheDictionary();  
+		testBuildingTheDictionary();  
 		// testScrabbleScore();    
-		testCreateHands();  
+		// testCreateHands();  
 		////testPlayHands();
 		////playGame();
 	}
@@ -157,7 +157,7 @@ public class Scrabble {
 		for (int i = 0; i < 5; i++) {
 			System.out.println(DICTIONARY[i]);
 		}
-		System.out.println(isWordInDictionary("ABASED"));
+		System.out.println(isWordInDictionary("CAT"));
 	}
 	
 	public static void testScrabbleScore() {
@@ -174,8 +174,8 @@ public class Scrabble {
 	}
 	public static void testPlayHands() {
 		init();
-		//playHand("ocostrza");
-		//playHand("arbffip");
-		//playHand("aretiin");
+		playHand("ocostrza");
+		playHand("arbffip");
+		playHand("aretiin");
 	}
 }
