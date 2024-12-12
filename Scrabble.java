@@ -87,8 +87,10 @@ public class Scrabble {
 	// into it, at random indexes, the letters 'a' and 'e'
 	// (these two vowels make it easier for the user to construct words)
 	public static String createHand() {
-		//// Replace the following statement with your code
-		return null;
+		String randomHand = MyString.randomStringOfLetters(HAND_SIZE - 2);
+		randomHand = MyString.insertRandomly('a', randomHand);
+		randomHand = MyString.insertRandomly('e', randomHand);
+		return randomHand;
 	}
 	
     // Runs a single hand in a Scrabble game. Each time the user enters a valid word:
@@ -142,9 +144,9 @@ public class Scrabble {
 	public static void main(String[] args) {
 
 		//// Uncomment the test you want to run
-		testBuildingTheDictionary();  
+		// testBuildingTheDictionary();  
 		// testScrabbleScore();    
-		////testCreateHands();  
+		testCreateHands();  
 		////testPlayHands();
 		////playGame();
 	}
